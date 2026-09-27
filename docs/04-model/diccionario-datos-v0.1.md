@@ -1,59 +1,24 @@
-# DER lógico v0.1 AgroControl
+# Diccionario de datos v0.1 - AgroControl
 
-## Convenciones
-PK = clave primaria
-FK = clave foránea
-UQ = unicidad
-NN = obligatorio
+## Tabla: predio
+| Campo | Significado | Obligatorio | PK/FK/UQ | Dominio/regla | Origen |
+|---|---|---|---|---|---|
+| predio_id | Identificador único de la finca | Sí (NN) | PK | Autoincremental/UUID | Diseño técnico |
+| nombre | Nombre comercial de la finca | Sí (NN) | UQ | Texto no vacío | RN-01 |
+| ubicacion | Dirección física o coordenadas | Sí (NN) | - | Texto | Ficha base |
 
-## usuario
-PK usuario_id
-NN nombre
-NN email
-UQ email
-NN rol
+## Tabla: parcela
+| Campo | Significado | Obligatorio | PK/FK/UQ | Dominio/regla | Origen |
+|---|---|---|---|---|---|
+| parcela_id | Identificador de la porción de tierra | Sí (NN) | PK | Autoincremental/UUID | Diseño técnico |
+| predio_id | Finca a la que pertenece | Sí (NN) | FK | Referencia a tabla predio | Relación 1:N |
+| codigo | Código interno (Ej. P-01) | Sí (NN) | UQ (contextual)| Alfanumérico | RN-03 |
+| hectareas | Tamaño en hectáreas de la parcela | Sí (NN) | - | Decimal > 0 | RN-02 |
 
-## predio
-PK predio_id
-NN nombre
-UQ nombre
-NN ubicacion
-
-## parcela
-PK parcela_id
-FK predio_id -> predio.predio_id
-NN codigo
-UQ (predio_id, codigo)
-NN hectareas
-
-## labor
-PK labor_id
-FK parcela_id -> parcela.parcela_id
-FK usuario_id -> usuario.usuario_id
-NN nombre
-NN estado
-- descripcion (NULL)
-
-## insumo
-PK insumo_id
-NN nombre_producto
-UQ nombre_producto
-NN stock
-
-## labor_insumo
-PK labor_insumo_id
-FK labor_id -> labor.labor_id
-FK insumo_id -> insumo.insumo_id
-NN cantidad_utilizada
-
-## Relaciones
-1. predio 1:N parcela
-2. parcela 1:N labor
-3. usuario 1:N labor
-4. labor 1:N labor_insumo
-5. insumo 1:N labor_insumo
-
-## Reglas que afectan el modelo
-RN-01 (Nombres únicos de predio) -> decisión: UQ en predio.nombre
-RN-02 (Tamaño de parcela válido) -> decisión: CHECK en parcela.hectareas > 0
-RN-03 (Trabajador asignado opcional al inicio) -> decisión: FK usuario_id en labor permite NULL
+## Tabla: usuario
+| Campo | Significado | Obligatorio | PK/FK/UQ | Dominio/regla | Origen |
+|---|---|---|---|---|---|
+| usuario_id | Identificador del trabajador/admin | Sí (NN) | PK | Autoincremental/UUID | Diseño técnico |
+| nombre | Nombre completo del usuario | Sí (NN) | - | Texto | Ficha base |
+| email | Correo de contacto y login | Sí (NN) | UQ | Formato correo válido | Autenticación |
+| rol | Cargo o nivel de acceso | Sí (NN) | - | 'Admin' o 'Trabajador' | RN-05 |
