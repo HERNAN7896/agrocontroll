@@ -1,4 +1,4 @@
-package cultivo.domain;
+package com.agrocontroll.cultivo.domain;
 
 public class Cosecha {
     private long id;

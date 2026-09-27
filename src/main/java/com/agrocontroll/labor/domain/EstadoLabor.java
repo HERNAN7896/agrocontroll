@@ -1,7 +1,7 @@
-package labor.domain;
+package com.agrocontroll.labor.domain;
 
 public enum EstadoLabor {
-    PLANIFICA,
+    PLANIFICADA,
     ASINGNA,
     COMPLETA,
     CANCELA,

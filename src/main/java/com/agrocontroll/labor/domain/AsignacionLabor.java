@@ -1,4 +1,4 @@
-package labor.domain;
+package com.agrocontroll.labor.domain;
 
 public class AsignacionLabor {
 

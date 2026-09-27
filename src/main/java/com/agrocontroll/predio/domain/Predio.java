@@ -1,34 +1,26 @@
-package predio.domain;
-
-import  java.util.ArrayList;
-import java.util.Collection;
-import  java.util.List;
+package com.agrocontroll.predio.domain;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Predio {
-    private  long id ;
-    private  String nombre;
-    private  String ubicacion;
-    private final List<Parcela>parcelas=new ArrayList<>();
+    private Long id;
+    private String nombre;
+    private String ubicacion;
+    private List<Parcela> parcelas;
 
-    public Predio(long id, String nombre, String ubicacion) {
+    public Predio(Long id, String nombre, String ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
+        this.parcelas = new ArrayList<>();
     }
 
-    public long getId() {
-        return id;
+    public void agregarParcela(Parcela parcela) {
+        this.parcelas.add(parcela);
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public List<Parcela> getParcelas() {
-        return parcelas;
-    }
+    public Long getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getUbicacion() { return ubicacion; }
+    public List<Parcela> getParcelas() { return parcelas; }
 }

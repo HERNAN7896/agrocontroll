@@ -1,4 +1,4 @@
-package usuario.domain;
+package com.agrocontroll.usuario.domain;
 
 public class Usuario {
     private long id;

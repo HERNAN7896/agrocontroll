@@ -1,4 +1,4 @@
-package predio.domain;
+package com.agrocontroll.predio.domain;
 
 public class Parcela {
 

@@ -1,4 +1,4 @@
-package insumo.domain;
+package com.agrocontroll.insumo.domain;
 
 public class MovimientoInsumo {
     private long id;

@@ -1,4 +1,4 @@
-package usuario.domain;
+package com.agrocontroll.usuario.domain;
 
 public enum Rol {
 

@@ -1,4 +1,4 @@
-package cultivo.domain;
+package com.agrocontroll.cultivo.domain;
 
 public class Campania {
 
